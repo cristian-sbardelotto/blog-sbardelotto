@@ -1,3 +1,4 @@
+import { NextAuthProvider } from '@/providers/auth';
 import type { Metadata } from 'next';
 import './globals.css';
 
@@ -13,7 +14,9 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='pt-br'>
-      <body>{children}</body>
+      <body>
+        <NextAuthProvider>{children}</NextAuthProvider>
+      </body>
     </html>
   );
 }
