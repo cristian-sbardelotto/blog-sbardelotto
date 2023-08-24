@@ -12,18 +12,11 @@ datasource db {
 
 model Post {
   id        String   @id @default(uuid())
+  userId    String
   title     String   @unique
   content   String   @unique
   createdAt DateTime @default(now())
-  createdBy User     @relation(fields: [id], references: [id])
-}
-
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdBy User     @relation(fields: [userId], references: [id])
 }
 
 model User {
@@ -36,6 +29,14 @@ model User {
   accounts Account[]
   sessions Session[]
   posts    Post[]
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Account {
