@@ -1,10 +1,14 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 
-import { Search } from 'lucide-react';
+import { Input } from '@/components/Input';
+import { signIn, useSession } from 'next-auth/react';
 
 export function Header() {
+  const { data, status } = useSession();
+
   return (
     <header className='pt-[30px] px-4 pb-12 bg-gradient-to-r from-header-dark-blue to-header-light-blue'>
       <nav className='flex justify-between mb-14'>
@@ -12,21 +16,24 @@ export function Header() {
           <Link href='/'>Blog Sbardelotto</Link>
         </h1>
 
-        <button className='text-white'>Login</button>
+        {status === 'authenticated' ? (
+          <Image
+            src={String(data?.user?.image)}
+            alt='User Image'
+            width={50}
+            height={50}
+          />
+        ) : (
+          <button
+            onClick={() => signIn()}
+            className='text-white'
+          >
+            Login
+          </button>
+        )}
       </nav>
 
-      <div className='relative'>
-        <Search
-          className='absolute left-3 top-[33%]'
-          size={16}
-          color='#fff'
-        />
-
-        <input
-          className='pl-10 pr-5 py-3 bg-dark-transparent w-full text-gray-200 rounded-md outline-none'
-          placeholder='Pesquisar no Blog'
-        />
-      </div>
+      <Input />
     </header>
   );
 }
