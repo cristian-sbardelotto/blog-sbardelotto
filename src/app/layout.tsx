@@ -1,6 +1,12 @@
 import { NextAuthProvider } from '@/providers/auth';
 import type { Metadata } from 'next';
+import { Lexend_Deca } from 'next/font/google';
 import './globals.css';
+
+const lexendDeca = Lexend_Deca({
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'],
+});
 
 export const metadata: Metadata = {
   title: 'Blog Sbardelotto',
@@ -14,7 +20,7 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='pt-br'>
-      <body>
+      <body className={lexendDeca.className}>
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>
