@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { Lexend_Deca } from 'next/font/google';
 import './globals.css';
 
+import { Header } from '@/components/Header';
+
 const lexendDeca = Lexend_Deca({
   subsets: ['latin'],
   weight: ['300', '400', '700', '900'],
@@ -21,7 +23,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='pt-br'>
       <body className={lexendDeca.className}>
-        <NextAuthProvider>{children}</NextAuthProvider>
+        <NextAuthProvider>
+          <Header />
+
+          {children}
+        </NextAuthProvider>
       </body>
     </html>
   );
