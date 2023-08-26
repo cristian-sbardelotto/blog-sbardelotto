@@ -2,15 +2,14 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 import { Input } from '@/components/Input';
-import { signIn, signOut, useSession } from 'next-auth/react';
-import { useState } from 'react';
+import { useAuth } from '@/hooks/useAuth';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const { data, status } = useSession();
+  const { data, isUserLoggedIn, signIn, signOut } = useAuth();
 
   return (
     <header className='pt-[30px] px-4 pb-12 bg-gradient-to-r from-header-dark-blue to-header-light-blue'>
@@ -19,7 +18,7 @@ export function Header() {
           <Link href='/'>Blog Sbardelotto</Link>
         </h1>
 
-        {status === 'authenticated' ? (
+        {isUserLoggedIn ? (
           <Image
             src={String(data?.user?.image)}
             alt='User Image'
