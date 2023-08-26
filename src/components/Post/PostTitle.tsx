@@ -1,7 +1,7 @@
-export function PostTitle() {
-  return (
-    <h3 className='text-lg text-slate-900 mb-2'>
-      Agora é oficial: o Windows 11 está vindo
-    </h3>
-  );
+type PostTitleProps = {
+  title: string;
+};
+
+export function PostTitle({ title }: PostTitleProps) {
+  return <h3 className='text-lg text-slate-900 mb-2'>{title}</h3>;
 }

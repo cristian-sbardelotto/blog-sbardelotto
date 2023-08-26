@@ -2,10 +2,14 @@ import Link from 'next/link';
 
 import { ExternalLink } from 'lucide-react';
 
-export function PostHeader() {
+type PostHeaderProps = {
+  createdAt: React.ReactNode;
+};
+
+export function PostHeader({ createdAt }: PostHeaderProps) {
   return (
     <div className='flex justify-between mb-7'>
-      <span className='text-gray-600 text-sm'>02 de jul, 2021</span>
+      <span className='text-gray-600 text-sm'>{createdAt}</span>
 
       <Link href='/'>
         <ExternalLink size={18} />
