@@ -1,6 +1,9 @@
 import { Post } from '@/components/Post';
 import { prisma } from '@/lib/prisma';
 
+import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
+
 export default async function Home() {
   const posts = await prisma.post.findMany();
 
@@ -9,7 +12,9 @@ export default async function Home() {
       {posts.map(post => (
         <Post.Root key={post.id}>
           <Post.Header
-            createdAt={String(post.createdAt)}
+            createdAt={format(new Date(post.createdAt), "dd 'de' MMM',' yyyy", {
+              locale: ptBR,
+            })}
             postId={post.id}
           />
           <Post.Title
