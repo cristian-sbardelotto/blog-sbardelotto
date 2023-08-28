@@ -2,13 +2,17 @@ import Link from 'next/link';
 
 import { ExternalLink } from 'lucide-react';
 
-type PostHeaderProps = {
+type PostCardHeaderProps = {
   createdAt: React.ReactNode;
   postId: string;
   createdBy: string;
 };
 
-export function PostHeader({ createdAt, createdBy, postId }: PostHeaderProps) {
+export function PostCardHeader({
+  createdAt,
+  createdBy,
+  postId,
+}: PostCardHeaderProps) {
   return (
     <div className='flex justify-between mb-7'>
       <div className='flex flex-col justify-start'>
