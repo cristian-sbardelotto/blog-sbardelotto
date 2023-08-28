@@ -5,7 +5,15 @@ import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
 export default async function Home() {
-  const posts = await prisma.post.findMany();
+  const posts = await prisma.post.findMany({
+    select: {
+      content: true,
+      id: true,
+      title: true,
+      createdAt: true,
+      createdBy: true,
+    },
+  });
 
   return (
     <main className='px-5 pt-12 space-y-6'>
@@ -15,6 +23,7 @@ export default async function Home() {
             createdAt={format(new Date(post.createdAt), "dd 'de' MMM',' yyyy", {
               locale: ptBR,
             })}
+            createdBy={post.createdBy.name!}
             postId={post.id}
           />
           <Post.Title

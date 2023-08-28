@@ -5,12 +5,19 @@ import { ExternalLink } from 'lucide-react';
 type PostHeaderProps = {
   createdAt: React.ReactNode;
   postId: string;
+  createdBy: string;
 };
 
-export function PostHeader({ createdAt, postId }: PostHeaderProps) {
+export function PostHeader({ createdAt, createdBy, postId }: PostHeaderProps) {
   return (
     <div className='flex justify-between mb-7'>
-      <span className='text-gray-600 text-sm'>{createdAt}</span>
+      <div className='flex flex-col justify-start'>
+        <p className='text-gray-600 text-sm'>
+          Criado por <span className='break-all text-black'>{createdBy}</span>
+        </p>
+
+        <p className='text-gray-600 text-sm'>{createdAt}</p>
+      </div>
 
       <Link
         href={`/post/${postId}`}
