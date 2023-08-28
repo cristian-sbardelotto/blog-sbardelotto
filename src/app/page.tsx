@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -9,8 +10,15 @@ import { Post } from '@prisma/client';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
+type PostsProps = Post & {
+  createdBy: {
+    name: string;
+  };
+};
+
 export default function Home() {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<PostsProps[]>([]);
+  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     async function getPosts() {
@@ -23,17 +31,27 @@ export default function Home() {
     getPosts();
   }, []);
 
+  const filteredPosts = inputValue
+    ? posts.filter(
+        post =>
+          post.title.includes(inputValue) || post.content.includes(inputValue)
+      )
+    : posts;
+
   return (
     <main className='px-5 pt-10 space-y-6'>
-      <Input />
+      <Input
+        onChange={e => setInputValue(e.target.value)}
+        value={inputValue}
+      />
 
-      {posts.map(post => (
+      {filteredPosts.map(post => (
         <PostCard.Root key={post.id}>
           <PostCard.Header
             createdAt={format(new Date(post.createdAt), "dd 'de' MMM',' yyyy", {
               locale: ptBR,
             })}
-            createdBy={post.title}
+            createdBy={post.createdBy.name!}
             postId={post.id}
           />
           <PostCard.Title
