@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { Input } from '@/components/Input';
 import { useAuth } from '@/hooks/useAuth';
 
 export function Header() {
@@ -12,8 +11,8 @@ export function Header() {
   const { data, isUserLoggedIn, signIn, signOut } = useAuth();
 
   return (
-    <header className='pt-[30px] px-4 pb-12 bg-gradient-to-r from-header-dark-blue to-header-light-blue'>
-      <nav className='flex justify-between items-center mb-14 relative'>
+    <header className='pt-[30px] px-4 pb-6 bg-gradient-to-r from-header-dark-blue to-header-light-blue'>
+      <nav className='flex justify-between items-center relative'>
         <h1 className='text-white font-bold text-xl'>
           <Link href='/'>Blog Sbardelotto</Link>
         </h1>
@@ -47,8 +46,6 @@ export function Header() {
           </div>
         )}
       </nav>
-
-      <Input />
     </header>
   );
 }

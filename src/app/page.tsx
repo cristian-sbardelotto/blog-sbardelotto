@@ -1,37 +1,47 @@
-import { Post } from '@/components/Post';
-import { prisma } from '@/lib/prisma';
+'use client';
+
+import { useEffect, useState } from 'react';
+
+import { Input } from '@/components/Input';
+import { PostCard } from '@/components/PostCard';
+import { Post } from '@prisma/client';
 
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
-export default async function Home() {
-  const posts = await prisma.post.findMany({
-    select: {
-      content: true,
-      id: true,
-      title: true,
-      createdAt: true,
-      createdBy: true,
-    },
-  });
+export default function Home() {
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    async function getPosts() {
+      const response = await fetch('/api/posts');
+      const data = await response.json();
+
+      setPosts(data);
+    }
+
+    getPosts();
+  }, []);
 
   return (
-    <main className='px-5 pt-12 space-y-6'>
+    <main className='px-5 pt-10 space-y-6'>
+      <Input />
+
       {posts.map(post => (
-        <Post.Root key={post.id}>
-          <Post.Header
+        <PostCard.Root key={post.id}>
+          <PostCard.Header
             createdAt={format(new Date(post.createdAt), "dd 'de' MMM',' yyyy", {
               locale: ptBR,
             })}
-            createdBy={post.createdBy.name!}
+            createdBy={post.title}
             postId={post.id}
           />
-          <Post.Title
+          <PostCard.Title
             postId={post.id}
             title={post.title}
           />
-          <Post.Content content={post.content} />
-        </Post.Root>
+          <PostCard.Content content={post.content} />
+        </PostCard.Root>
       ))}
     </main>
   );
