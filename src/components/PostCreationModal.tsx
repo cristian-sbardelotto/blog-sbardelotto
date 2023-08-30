@@ -1,3 +1,4 @@
+import { Button } from '@/components/Button';
 import { X } from 'lucide-react';
 
 type PostCreationModalProps = {
@@ -12,15 +13,15 @@ export function PostCreationModal({
   return (
     <div className='absolute inset-0 z-50 px-4 w-full h-screen flex items-center justify-center bg-shadow-transparent'>
       <div className='p-8 rounded-lg shadow-xl bg-gray-100 w-full'>
-        <div className='mb-3 pb-3 flex justify-between items-center border-b border-gray-light'>
+        <div className='mb-3 pb-3 flex justify-between items-center border-b border-gray-600'>
           <h2 className='text-xl font-medium'>Novo post</h2>
 
-          <button onClick={onCancel}>
+          <Button onClick={onCancel}>
             <X
               className='h-fit'
               size={22}
             />
-          </button>
+          </Button>
         </div>
 
         <div className='flex flex-col gap-1'>
@@ -44,9 +45,19 @@ export function PostCreationModal({
         />
 
         <div className='flex gap-3 justify-end'>
-          <button onClick={onCancel}>Cancelar</button>
+          <Button
+            className='hover:text-red-600 transition-colors'
+            onClick={onCancel}
+          >
+            Cancelar
+          </Button>
 
-          <button onClick={onFinish}>Publicar</button>
+          <Button
+            className='bg-blue-700 text-white rounded-full hover:bg-blue-600 transition-colors'
+            onClick={onFinish}
+          >
+            Publicar
+          </Button>
         </div>
       </div>
     </div>

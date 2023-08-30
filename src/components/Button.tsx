@@ -2,8 +2,6 @@ import { twMerge } from 'tailwind-merge';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'primary' | 'outline';
-  className?: string;
-  children: React.ReactNode;
 };
 
 const variantClasses = {

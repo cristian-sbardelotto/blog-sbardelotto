@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
+import { Button } from '@/components/Button';
 import { useAuth } from '@/hooks/useAuth';
 
 export function Header() {
@@ -23,26 +24,26 @@ export function Header() {
             alt='User Image'
             width={40}
             height={40}
-            className='rounded-full border border-gray-200'
+            className='rounded-full border border-gray-200 cursor-pointer'
             onClick={() => setIsMenuOpen(previous => !previous)}
           />
         ) : (
-          <button
+          <Button
             onClick={() => signIn()}
             className='text-white'
           >
             Login
-          </button>
+          </Button>
         )}
 
         {isMenuOpen && (
           <div className='z-50 absolute top-14 right-0 p-2 bg-white rounded-lg shadow-md'>
-            <button
+            <Button
               className='text-primary text-sm font-semibold'
               onClick={() => signOut()}
             >
               Logout
-            </button>
+            </Button>
           </div>
         )}
       </nav>

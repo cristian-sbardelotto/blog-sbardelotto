@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from 'react';
 
+import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import { PostCard } from '@/components/PostCard';
 import { PostCreationModal } from '@/components/PostCreationModal';
@@ -52,15 +53,16 @@ export default function Home() {
       )}
 
       <main className='px-5 pt-7 space-y-6'>
-        <div className='flex justify-between'>
+        <div className='flex justify-between items-center'>
           <h2 className='text-2xl font-bold'>Posts Recentes</h2>
 
-          <button
+          <Button
             className='flex items-center'
+            variant='outline'
             onClick={() => setIsModalOpen(true)}
           >
             <Plus className='inline' /> Novo post
-          </button>
+          </Button>
         </div>
 
         <Input
