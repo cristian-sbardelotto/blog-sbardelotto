@@ -14,10 +14,10 @@ export function PostCardHeader({
   postId,
 }: PostCardHeaderProps) {
   return (
-    <div className='flex justify-between mb-7'>
+    <div className='flex justify-between gap-2 mb-7'>
       <div className='flex flex-col justify-start'>
         <p className='text-gray-600 text-sm'>
-          Criado por <span className='break-all text-black'>{createdBy}</span>
+          Criado por <span className='break-words text-black'>{createdBy}</span>
         </p>
 
         <p className='text-gray-600 text-sm'>{createdAt}</p>

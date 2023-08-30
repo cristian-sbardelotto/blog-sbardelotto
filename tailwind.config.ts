@@ -12,6 +12,9 @@ const config: Config = {
         'header-dark-blue': '#574ae8',
         'header-light-blue': '#3ea1db',
       },
+      backgroundColor: {
+        'shadow-transparent': '#3336',
+      },
     },
   },
   plugins: [],

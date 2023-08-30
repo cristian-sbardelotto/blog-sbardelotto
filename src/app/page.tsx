@@ -5,10 +5,12 @@ import { useEffect, useState } from 'react';
 
 import { Input } from '@/components/Input';
 import { PostCard } from '@/components/PostCard';
+import { PostCreationModal } from '@/components/PostCreationModal';
 import { Post } from '@prisma/client';
 
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
+import { Plus } from 'lucide-react';
 
 type PostsProps = Post & {
   createdBy: {
@@ -17,6 +19,8 @@ type PostsProps = Post & {
 };
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [posts, setPosts] = useState<PostsProps[]>([]);
   const [inputValue, setInputValue] = useState('');
 
@@ -39,28 +43,52 @@ export default function Home() {
     : posts;
 
   return (
-    <main className='px-5 pt-10 space-y-6'>
-      <Input
-        onChange={e => setInputValue(e.target.value)}
-        value={inputValue}
-      />
+    <>
+      {isModalOpen && (
+        <PostCreationModal
+          onCancel={() => setIsModalOpen(false)}
+          onFinish={() => {}}
+        />
+      )}
 
-      {filteredPosts.map(post => (
-        <PostCard.Root key={post.id}>
-          <PostCard.Header
-            createdAt={format(new Date(post.createdAt), "dd 'de' MMM',' yyyy", {
-              locale: ptBR,
-            })}
-            createdBy={post.createdBy.name!}
-            postId={post.id}
-          />
-          <PostCard.Title
-            postId={post.id}
-            title={post.title}
-          />
-          <PostCard.Content content={post.content} />
-        </PostCard.Root>
-      ))}
-    </main>
+      <main className='px-5 pt-7 space-y-6'>
+        <div className='flex justify-between'>
+          <h2 className='text-2xl font-bold'>Posts Recentes</h2>
+
+          <button
+            className='flex items-center'
+            onClick={() => setIsModalOpen(true)}
+          >
+            <Plus className='inline' /> Novo post
+          </button>
+        </div>
+
+        <Input
+          onChange={e => setInputValue(e.target.value)}
+          value={inputValue}
+        />
+
+        {filteredPosts.map(post => (
+          <PostCard.Root key={post.id}>
+            <PostCard.Header
+              createdAt={format(
+                new Date(post.createdAt),
+                "dd 'de' MMM',' yyyy",
+                {
+                  locale: ptBR,
+                }
+              )}
+              createdBy={post.createdBy.name!}
+              postId={post.id}
+            />
+            <PostCard.Title
+              postId={post.id}
+              title={post.title}
+            />
+            <PostCard.Content content={post.content} />
+          </PostCard.Root>
+        ))}
+      </main>
+    </>
   );
 }
