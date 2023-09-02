@@ -29,10 +29,7 @@ export default function Home() {
   return (
     <>
       {isModalOpen && (
-        <PostCreationModal
-          onCancel={() => setIsModalOpen(false)}
-          onSuccess={() => {}}
-        />
+        <PostCreationModal onCancel={() => setIsModalOpen(false)} />
       )}
 
       <main className='px-5 pt-7 space-y-6'>
