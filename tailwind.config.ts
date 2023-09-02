@@ -15,6 +15,17 @@ const config: Config = {
       backgroundColor: {
         'shadow-transparent': '#3336',
       },
+      animation: {
+        appear: 'appear 200ms',
+      },
+      keyframes: {
+        appear: {
+          '0%': {
+            transform: 'translateY(-10vh)',
+            opacity: '0',
+          },
+        },
+      },
     },
   },
   plugins: [],

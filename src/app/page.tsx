@@ -40,7 +40,7 @@ export default function Home() {
           <h2 className='text-2xl font-bold'>Posts Recentes</h2>
 
           <Button
-            className='flex items-center'
+            className='flex items-center hover:border-transparent hover:bg-gradient-to-r hover:from-header-dark-blue hover:to-header-light-blue hover:text-gray-200 transition-colors'
             variant='outline'
             onClick={() => setIsModalOpen(true)}
           >
