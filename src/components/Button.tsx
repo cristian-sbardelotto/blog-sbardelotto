@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonProps = React.ComponentProps<'button'> & {
   variant?: 'primary' | 'outline';
 };
 

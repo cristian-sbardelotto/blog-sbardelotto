@@ -1,40 +1,23 @@
 /* eslint-disable indent */
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import { PostCard } from '@/components/PostCard';
 import { PostCreationModal } from '@/components/PostCreationModal';
-import { Post } from '@prisma/client';
+import { usePosts } from '@/hooks/usePosts';
 
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { Plus } from 'lucide-react';
 
-type PostsProps = Post & {
-  createdBy: {
-    name: string;
-  };
-};
-
 export default function Home() {
+  const [inputValue, setInputValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [posts, setPosts] = useState<PostsProps[]>([]);
-  const [inputValue, setInputValue] = useState('');
-
-  useEffect(() => {
-    async function getPosts() {
-      const response = await fetch('/api/posts');
-      const data = await response.json();
-
-      setPosts(data);
-    }
-
-    getPosts();
-  }, []);
+  const { posts } = usePosts();
 
   const filteredPosts = inputValue
     ? posts.filter(
@@ -48,7 +31,7 @@ export default function Home() {
       {isModalOpen && (
         <PostCreationModal
           onCancel={() => setIsModalOpen(false)}
-          onFinish={() => {}}
+          onSuccess={() => {}}
         />
       )}
 
