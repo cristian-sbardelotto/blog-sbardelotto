@@ -1,22 +1,44 @@
 'use client';
 
-import { useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 import { Button } from '@/components/Button';
 import { useAuth } from '@/hooks/useAuth';
+
+import { Post } from '@prisma/client';
 import { X } from 'lucide-react';
 
 type PostCreationModalProps = {
   onCancel: () => void;
 };
 
+const postSchema = z.object({
+  title: z
+    .string()
+    .nonempty('O título é obrigatório')
+    .max(100, 'O título pode ter no máximo 100 caracteres'),
+  content: z
+    .string()
+    .nonempty('O conteúdo é obrigatório')
+    .max(2000, 'O conteúdo pode ter no máximo 2.000 caracteres'),
+});
+
+type FormProps = z.infer<typeof postSchema>;
+
 export function PostCreationModal({ onCancel }: PostCreationModalProps) {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormProps>({
+    resolver: zodResolver(postSchema),
+  });
 
   const { data } = useAuth();
 
-  async function createPost() {
+  async function createPost({ content, title }: Post) {
     const postData = {
       title,
       content,
@@ -31,7 +53,10 @@ export function PostCreationModal({ onCancel }: PostCreationModalProps) {
 
   return (
     <div className='absolute inset-0 z-50 px-4 w-full h-screen flex items-center justify-center bg-shadow-transparent'>
-      <div className='p-8 pb-5 rounded-lg shadow-xl bg-gray-100 w-full animate-appear'>
+      <form
+        onSubmit={handleSubmit(createPost as SubmitHandler<FormProps>)}
+        className='p-8 pb-5 rounded-lg shadow-xl bg-gray-100 w-full animate-appear'
+      >
         <div className='mb-3 pb-3 flex justify-between items-center border-b border-gray-600'>
           <h2 className='text-xl font-medium'>Novo post</h2>
 
@@ -53,19 +78,19 @@ export function PostCreationModal({ onCancel }: PostCreationModalProps) {
 
           <input
             id='title'
-            value={title}
-            onChange={e => setTitle(e.target.value)}
             placeholder='Digite seu título'
             className='mb-6 p-2 border border-gray-600 bg-transparent outline-none rounded-md font-sans focus:border-black transition-colors'
+            {...register('title')}
           />
+          <span>{errors.title && errors.title.message}</span>
         </div>
 
         <textarea
           placeholder='Conteúdo da publicação...'
-          value={content}
-          onChange={e => setContent(e.target.value)}
           className='h-[25vh] w-full p-2 mb-6 outline-none resize-none font-sans bg-transparent border border-gray-600 rounded-lg focus:border-black transition-colors'
+          {...register('content')}
         />
+        <span>{errors.content && errors.content.message}</span>
 
         <div className='flex gap-3 justify-end'>
           <Button
@@ -77,12 +102,12 @@ export function PostCreationModal({ onCancel }: PostCreationModalProps) {
 
           <Button
             className='bg-blue-700 text-white rounded-full hover:bg-blue-600 transition-colors'
-            onClick={createPost}
+            type='submit'
           >
             Publicar
           </Button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
