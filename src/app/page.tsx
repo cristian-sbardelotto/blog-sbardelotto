@@ -4,9 +4,9 @@
 import { useState } from 'react';
 
 import { Button } from '@/components/Button';
-import { Input } from '@/components/Input';
 import { PostCard } from '@/components/PostCard';
 import { PostCreationModal } from '@/components/PostCreationModal';
+import { SearchInput } from '@/components/SearchInput';
 import { usePosts } from '@/hooks/usePosts';
 
 import { format } from 'date-fns';
@@ -45,7 +45,7 @@ export default function Home() {
           </Button>
         </div>
 
-        <Input
+        <SearchInput
           onChange={e => setInputValue(e.target.value)}
           value={inputValue}
         />

@@ -2,12 +2,12 @@ import { ChangeEventHandler } from 'react';
 
 import { Search } from 'lucide-react';
 
-type InputProps = {
+type SearchInputProps = {
   onChange: ChangeEventHandler<HTMLInputElement>;
   value: string;
 };
 
-export function Input({ onChange, value }: InputProps) {
+export function SearchInput({ onChange, value }: SearchInputProps) {
   return (
     <div className='relative'>
       <Search
