@@ -3,6 +3,8 @@ export function enableScroll() {
 }
 
 export function disableScroll() {
+  window.scrollTo(0, 0);
+
   const scrollTop = window.scrollY || document.documentElement.scrollTop;
   const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
 
