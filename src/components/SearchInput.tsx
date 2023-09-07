@@ -9,7 +9,7 @@ type SearchInputProps = {
 
 export function SearchInput({ onChange, value }: SearchInputProps) {
   return (
-    <div className='relative'>
+    <div className='relative mb-6'>
       <Search
         className='absolute left-3 top-[33%]'
         size={16}
