@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { Button } from '@/components/Button';
 import { useAuth } from '@/hooks/useAuth';
 import { Post } from '@prisma/client';
@@ -37,6 +39,7 @@ export function PostForm({ onCancel }: PostFormProps) {
   });
 
   const { data } = useAuth();
+  const router = useRouter();
 
   async function createPost({ content, title }: Post) {
     const postData = {
@@ -45,10 +48,12 @@ export function PostForm({ onCancel }: PostFormProps) {
       userId: (data?.user as { id: string }).id,
     };
 
-    await fetch('/api/create/', {
+    await fetch('/api/posts/create/', {
       method: 'POST',
       body: JSON.stringify(postData),
     });
+
+    router.push('/my-posts');
   }
 
   return (
