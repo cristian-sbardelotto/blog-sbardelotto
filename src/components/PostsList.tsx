@@ -55,7 +55,7 @@ export function PostsList() {
         value={inputValue}
       />
 
-      <div className='space-y-6'>
+      <div className='space-y-6 mb-6'>
         {filteredPosts.map(post => (
           <PostCard.Root key={post.id}>
             <PostCard.Header

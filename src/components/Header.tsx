@@ -37,7 +37,7 @@ export function Header() {
         )}
 
         {isMenuOpen && (
-          <div className='z-50 absolute top-14 right-0 p-2 bg-white rounded-lg shadow-md'>
+          <div className='z-50 absolute top-14 right-0 p-2 bg-white rounded-lg shadow-md animate-appear'>
             <Button
               className='text-primary text-sm font-semibold'
               onClick={() => signOut()}
