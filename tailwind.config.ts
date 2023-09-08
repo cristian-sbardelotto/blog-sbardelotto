@@ -14,6 +14,7 @@ const config: Config = {
       },
       backgroundColor: {
         'shadow-transparent': '#3336',
+        main: '#f3f5f7',
       },
       animation: {
         appear: 'appear 200ms',

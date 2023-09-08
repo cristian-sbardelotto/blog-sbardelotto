@@ -22,7 +22,7 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='pt-br'>
-      <body className={lexendDeca.className}>
+      <body className={`${lexendDeca.className} bg-main`}>
         <NextAuthProvider>
           <Header />
 
