@@ -7,7 +7,7 @@ import { Header } from '@/components/Header';
 
 const lexendDeca = Lexend_Deca({
   subsets: ['latin'],
-  weight: ['300', '400', '700', '900'],
+  weight: ['300', '400', '500', '700', '900'],
 });
 
 export const metadata: Metadata = {
