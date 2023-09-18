@@ -5,7 +5,7 @@
 
 import { useState } from 'react';
 
-import { usePosts } from '@/hooks/usePosts';
+import { useFetch } from '@/hooks/useFetch';
 import { disableScroll, enableScroll } from '@/utils/pageScroll';
 
 import { Button } from '@/components/Button';
@@ -13,22 +13,31 @@ import { PostCard } from '@/components/PostCard';
 import { PostCreationModal } from '@/components/PostCreationModal';
 import { SearchInput } from '@/components/SearchInput';
 
+import { Post } from '@prisma/client';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { Plus } from 'lucide-react';
+
+type PostProps = Post & {
+  createdBy: {
+    name: string;
+  };
+};
 
 export function PostsList() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
-  const { posts } = usePosts();
+  const { data } = useFetch<PostProps[]>('/api/posts');
+
+  if (!data) return;
 
   const filteredPosts = inputValue
-    ? posts.filter(
+    ? data.filter(
         post =>
           post.title.includes(inputValue) || post.content.includes(inputValue)
       )
-    : posts;
+    : data;
 
   isModalOpen ? disableScroll() : enableScroll();
 
