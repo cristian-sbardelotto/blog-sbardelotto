@@ -24,7 +24,7 @@ export function PostCardHeader({
       </div>
 
       <Link
-        href={`/post/${postId}`}
+        href={`/posts/${postId}`}
         target='_blank'
         className='h-fit w-fit'
       >

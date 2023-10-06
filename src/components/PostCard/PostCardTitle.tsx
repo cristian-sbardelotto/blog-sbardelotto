@@ -8,7 +8,7 @@ type PostCardTitleProps = {
 export function PostCardTitle({ title, postId }: PostCardTitleProps) {
   return (
     <h3 className='break-all w-fit text-lg text-slate-900 mb-2 hover:underline'>
-      <Link href={`/post/${postId}`}>{title}</Link>
+      <Link href={`/posts/${postId}`}>{title}</Link>
     </h3>
   );
 }

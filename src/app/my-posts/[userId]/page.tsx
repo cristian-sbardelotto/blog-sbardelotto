@@ -1,12 +1,12 @@
 'use client';
 
-import { PostCard } from '@/components/PostCard';
-import { useFetch } from '@/hooks/useFetch';
-import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 import { Button } from '@/components/Button';
+import { PostCard } from '@/components/PostCard';
+import { useFetch } from '@/hooks/useFetch';
 import { Post } from '@prisma/client';
-import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 export default function MyPosts() {
   const { data: session } = useSession();
