@@ -37,9 +37,18 @@ export function Header() {
         )}
 
         {isMenuOpen && (
-          <div className='z-50 absolute top-14 right-0 p-2 bg-white rounded-lg shadow-md animate-appear'>
+          <div className='z-50 flex flex-col absolute top-14 right-0 p-2 bg-white rounded-lg shadow-md animate-appear'>
+            <Link
+              href='/my-posts'
+              className='border-b'
+            >
+              <Button className='text-primary text-sm font-semibold hover:bg-gray-100 transition-colors'>
+                My Posts
+              </Button>
+            </Link>
+
             <Button
-              className='text-primary text-sm font-semibold'
+              className='text-primary text-sm font-semibold hover:bg-gray-100 transition-colors'
               onClick={() => signOut()}
             >
               Logout
