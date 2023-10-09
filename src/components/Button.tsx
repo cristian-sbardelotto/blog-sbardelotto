@@ -1,12 +1,13 @@
 import { twMerge } from 'tailwind-merge';
 
 type ButtonProps = React.ComponentProps<'button'> & {
-  variant?: 'primary' | 'outline';
+  variant?: 'primary' | 'outline' | 'danger';
 };
 
 const variantClasses = {
   primary: 'border-none',
   outline: 'bg-transparent border border-black',
+  danger: 'border border-red-500',
 };
 
 export function Button({
