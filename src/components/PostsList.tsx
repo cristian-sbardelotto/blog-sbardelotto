@@ -6,6 +6,7 @@
 import { useState } from 'react';
 
 import { useFetch } from '@/hooks/useFetch';
+import { useModal } from '@/hooks/useModal';
 import { disableScroll, enableScroll } from '@/utils/pageScroll';
 
 import { Button } from '@/components/Button';
@@ -26,7 +27,7 @@ type PostProps = Post & {
 };
 
 export function PostsList() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isModalOpen, openModal, closeModal } = useModal(false);
   const [inputValue, setInputValue] = useState('');
 
   const { data } = useFetch<PostProps[]>('/api/posts');
@@ -46,7 +47,7 @@ export function PostsList() {
     <main className='px-5 pt-7'>
       {isModalOpen && (
         <Modal>
-          <PostForm onCancel={() => setIsModalOpen(false)} />
+          <PostForm onCancel={closeModal} />
         </Modal>
       )}
 
@@ -56,7 +57,7 @@ export function PostsList() {
         <Button
           className='flex items-center hover:border-transparent hover:bg-gradient-to-r hover:from-header-dark-blue hover:to-header-light-blue hover:text-gray-200 transition-colors'
           variant='outline'
-          onClick={() => setIsModalOpen(true)}
+          onClick={openModal}
         >
           <Plus className='inline' /> Novo post
         </Button>

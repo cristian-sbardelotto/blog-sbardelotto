@@ -2,13 +2,13 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
 
 import { Button } from '@/components/Button';
 import { useAuth } from '@/hooks/useAuth';
+import { useModal } from '@/hooks/useModal';
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isModalOpen, toggleModal } = useModal(false);
   const { data, isUserLoggedIn, signIn, signOut } = useAuth();
 
   return (
@@ -25,7 +25,7 @@ export function Header() {
             width={40}
             height={40}
             className='rounded-full border border-gray-200 cursor-pointer'
-            onClick={() => setIsMenuOpen(previous => !previous)}
+            onClick={toggleModal}
           />
         ) : (
           <Button
@@ -36,7 +36,7 @@ export function Header() {
           </Button>
         )}
 
-        {isMenuOpen && (
+        {isModalOpen && (
           <div className='z-50 flex flex-col absolute top-14 right-0 p-2 bg-white rounded-lg shadow-md animate-appear'>
             <Link
               href='/my-posts'
