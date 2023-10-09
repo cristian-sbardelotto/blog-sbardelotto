@@ -10,13 +10,14 @@ import { disableScroll, enableScroll } from '@/utils/pageScroll';
 
 import { Button } from '@/components/Button';
 import { PostCard } from '@/components/PostCard';
-import { PostCreationModal } from '@/components/PostCreationModal';
+import { Modal } from '@/components/Modal';
 import { SearchInput } from '@/components/SearchInput';
 
 import { Post } from '@prisma/client';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { Plus } from 'lucide-react';
+import { PostForm } from './PostForm';
 
 type PostProps = Post & {
   createdBy: {
@@ -44,7 +45,9 @@ export function PostsList() {
   return (
     <main className='px-5 pt-7'>
       {isModalOpen && (
-        <PostCreationModal onCancel={() => setIsModalOpen(false)} />
+        <Modal>
+          <PostForm onCancel={() => setIsModalOpen(false)} />
+        </Modal>
       )}
 
       <div className='flex justify-between items-center mb-6'>
