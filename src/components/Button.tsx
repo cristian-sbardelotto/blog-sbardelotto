@@ -7,7 +7,7 @@ type ButtonProps = React.ComponentProps<'button'> & {
 const variantClasses = {
   primary: 'border-none',
   outline: 'bg-transparent border border-black',
-  danger: 'border border-red-500',
+  danger: 'border border-red-500 text-red-500',
 };
 
 export function Button({
