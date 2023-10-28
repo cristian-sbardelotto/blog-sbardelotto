@@ -42,16 +42,16 @@ export function Header() {
               href='/my-posts'
               className='border-b'
             >
-              <Button className='text-primary text-sm font-semibold hover:bg-gray-100 transition-colors'>
-                My Posts
+              <Button className='text-sm font-semibold hover:bg-gray-100 transition-colors'>
+                Meus Posts
               </Button>
             </Link>
 
             <Button
-              className='text-primary text-sm font-semibold hover:bg-gray-100 transition-colors'
+              className='text-red-500 text-sm font-semibold hover:bg-gray-100 transition-colors'
               onClick={() => signOut()}
             >
-              Logout
+              Sair
             </Button>
           </div>
         )}
