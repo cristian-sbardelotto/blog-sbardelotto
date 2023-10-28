@@ -69,26 +69,32 @@ export function PostsList() {
       />
 
       <div className='space-y-6 mb-6'>
-        {filteredPosts.map(post => (
-          <PostCard.Root key={post.id}>
-            <PostCard.Header
-              createdAt={format(
-                new Date(post.createdAt),
-                "dd 'de' MMM',' yyyy",
-                {
-                  locale: ptBR,
-                }
-              )}
-              createdBy={post.createdBy.name!}
-              postId={post.id}
-            />
-            <PostCard.Title
-              postId={post.id}
-              title={post.title}
-            />
-            <PostCard.Content content={post.content} />
-          </PostCard.Root>
-        ))}
+        {filteredPosts.length > 0 ? (
+          filteredPosts.map(post => (
+            <PostCard.Root key={post.id}>
+              <PostCard.Header
+                createdAt={format(
+                  new Date(post.createdAt),
+                  "dd 'de' MMM',' yyyy",
+                  {
+                    locale: ptBR,
+                  }
+                )}
+                createdBy={post.createdBy.name!}
+                postId={post.id}
+              />
+              <PostCard.Title
+                postId={post.id}
+                title={post.title}
+              />
+              <PostCard.Content content={post.content} />
+            </PostCard.Root>
+          ))
+        ) : (
+          <h2 className='text-lg text-center'>
+            Nenhuma publicação foi encontrada.
+          </h2>
+        )}
       </div>
     </main>
   );
