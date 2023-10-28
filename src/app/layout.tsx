@@ -4,6 +4,7 @@ import { Lexend_Deca } from 'next/font/google';
 import './globals.css';
 
 import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 
 const lexendDeca = Lexend_Deca({
   subsets: ['latin'],
@@ -22,11 +23,13 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='pt-br'>
-      <body className={`${lexendDeca.className} bg-main`}>
+      <body className={`${lexendDeca.className} bg-main flex flex-col`}>
         <NextAuthProvider>
           <Header />
 
-          {children}
+          <div className='flex-1'>{children}</div>
+
+          <Footer />
         </NextAuthProvider>
       </body>
     </html>
