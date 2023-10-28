@@ -12,6 +12,12 @@ export async function GET() {
     },
   });
 
+  if (!posts) {
+    return new NextResponse(
+      JSON.stringify({ error: 'Something went wrong. Please try again later.' })
+    );
+  }
+
   return new NextResponse(JSON.stringify(posts), {
     status: 200,
   });
