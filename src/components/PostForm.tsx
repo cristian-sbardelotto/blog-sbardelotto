@@ -59,7 +59,7 @@ export function PostForm({ onCancel }: PostFormProps) {
   return (
     <form
       onSubmit={handleSubmit(createPost as SubmitHandler<FormProps>)}
-      className='p-8 pb-5 rounded-lg shadow-xl bg-gray-100 w-full animate-appear'
+      className='p-8 pb-5 rounded-lg shadow-xl bg-gray-100 w-full animate-appear md:max-w-[900px]'
     >
       <div className='mb-3 pb-3 flex justify-between items-center border-b border-gray-600'>
         <h2 className='text-xl font-medium'>Novo post</h2>
