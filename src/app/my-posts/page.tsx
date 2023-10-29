@@ -7,15 +7,27 @@ import { Button } from '@/components/Button';
 import { PostCard } from '@/components/PostCard';
 import { useFetch } from '@/hooks/useFetch';
 import { Post } from '@prisma/client';
+import { toast } from 'react-toastify';
 
 export default function MyPosts() {
   const { data } = useFetch<Post[]>('/api/my-posts/');
   const router = useRouter();
 
   async function deletePost(id: string) {
-    await fetch(`/api/my-posts/${id}`, { method: 'DELETE' });
+    const response = await fetch(`/api/my-posts/${id}`, { method: 'DELETE' });
 
-    return router.push('/');
+    if (response.ok) {
+      router.push('/');
+      return toast('Publicação excluída com sucesso!', {
+        position: 'top-right',
+        type: 'success',
+      });
+    }
+
+    toast(
+      'Algo deu errado ao criar a publicação! Tente novamente mais tarde.',
+      { position: 'top-right', type: 'error' }
+    );
   }
 
   return (

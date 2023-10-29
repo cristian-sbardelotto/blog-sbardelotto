@@ -11,6 +11,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { X } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 const postSchema = z.object({
   title: z
@@ -48,12 +49,24 @@ export function PostForm({ onCancel }: PostFormProps) {
       userId: (data?.user as { id: string }).id,
     };
 
-    await fetch('/api/posts/create/', {
+    const response = await fetch('/api/posts/create/', {
       method: 'POST',
       body: JSON.stringify(postData),
     });
 
-    router.push('/my-posts');
+    if (response.ok) {
+      router.push('/my-posts');
+
+      return toast('Publicação criada com sucesso!', {
+        position: 'top-right',
+        type: 'success',
+      });
+    }
+
+    toast(
+      'Algo deu errado ao criar a publicação! Tente novamente mais tarde.',
+      { position: 'top-right', type: 'error' }
+    );
   }
 
   return (
