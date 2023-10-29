@@ -26,7 +26,8 @@ export function PostCardHeader({
       <Link
         href={`/posts/${postId}`}
         target='_blank'
-        className='h-fit w-fit'
+        className='h-fit w-fit hover:scale-110 transition-all'
+        title='Abrir publicação em nova guia'
       >
         <ExternalLink size={18} />
       </Link>
