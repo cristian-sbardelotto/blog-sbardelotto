@@ -44,57 +44,59 @@ export function PostsList() {
   isModalOpen ? disableScroll() : enableScroll();
 
   return (
-    <main className='px-5 pt-7'>
+    <main className='px-5 pt-7 flex flex-col items-center'>
       {isModalOpen && (
         <Modal>
           <PostForm onCancel={closeModal} />
         </Modal>
       )}
 
-      <div className='flex justify-between items-center mb-6'>
-        <h2 className='text-2xl font-bold'>Posts Recentes</h2>
+      <div className='flex flex-col items-center w-full md:max-w-[900px]'>
+        <div className='flex justify-between items-center mb-6 w-full'>
+          <h2 className='text-2xl font-bold'>Posts Recentes</h2>
 
-        <Button
-          className='flex items-center hover:border-transparent hover:bg-gradient-to-r hover:from-header-dark-blue hover:to-header-light-blue hover:text-gray-200 transition-colors'
-          variant='outline'
-          onClick={openModal}
-        >
-          <Plus className='inline' /> Novo post
-        </Button>
-      </div>
+          <Button
+            className='flex items-center hover:border-transparent hover:bg-gradient-to-r hover:from-header-dark-blue hover:to-header-light-blue hover:text-gray-200 transition-colors'
+            variant='outline'
+            onClick={openModal}
+          >
+            <Plus className='inline' /> Novo post
+          </Button>
+        </div>
 
-      <SearchInput
-        onChange={e => setInputValue(e.target.value)}
-        value={inputValue}
-      />
+        <SearchInput
+          onChange={e => setInputValue(e.target.value)}
+          value={inputValue}
+        />
 
-      <div className='space-y-6 mb-6'>
-        {filteredPosts.length > 0 ? (
-          filteredPosts.map(post => (
-            <PostCard.Root key={post.id}>
-              <PostCard.Header
-                createdAt={format(
-                  new Date(post.createdAt),
-                  "dd 'de' MMM',' yyyy",
-                  {
-                    locale: ptBR,
-                  }
-                )}
-                createdBy={post.createdBy.name!}
-                postId={post.id}
-              />
-              <PostCard.Title
-                postId={post.id}
-                title={post.title}
-              />
-              <PostCard.Content content={post.content} />
-            </PostCard.Root>
-          ))
-        ) : (
-          <h2 className='text-lg text-center'>
-            Nenhuma publicação foi encontrada.
-          </h2>
-        )}
+        <div className='space-y-6 mb-6 w-full'>
+          {filteredPosts.length > 0 ? (
+            filteredPosts.map(post => (
+              <PostCard.Root key={post.id}>
+                <PostCard.Header
+                  createdAt={format(
+                    new Date(post.createdAt),
+                    "dd 'de' MMM',' yyyy",
+                    {
+                      locale: ptBR,
+                    }
+                  )}
+                  createdBy={post.createdBy.name!}
+                  postId={post.id}
+                />
+                <PostCard.Title
+                  postId={post.id}
+                  title={post.title}
+                />
+                <PostCard.Content content={post.content} />
+              </PostCard.Root>
+            ))
+          ) : (
+            <h2 className='text-lg text-center'>
+              Nenhuma publicação foi encontrada.
+            </h2>
+          )}
+        </div>
       </div>
     </main>
   );
