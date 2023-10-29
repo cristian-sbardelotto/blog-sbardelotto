@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/Button';
@@ -31,6 +32,8 @@ type PostFormProps = {
 };
 
 export function PostForm({ onCancel }: PostFormProps) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -43,6 +46,8 @@ export function PostForm({ onCancel }: PostFormProps) {
   const router = useRouter();
 
   async function createPost({ content, title }: Post) {
+    setIsLoading(true);
+
     const postData = {
       title,
       content,
@@ -55,6 +60,8 @@ export function PostForm({ onCancel }: PostFormProps) {
     });
 
     if (response.ok) {
+      setIsLoading(false);
+
       router.push('/my-posts');
 
       return toast('Publicação criada com sucesso!', {
@@ -137,6 +144,7 @@ export function PostForm({ onCancel }: PostFormProps) {
         <Button
           className='bg-blue-700 text-white rounded-full hover:bg-blue-600 transition-colors'
           type='submit'
+          isLoading={isLoading}
         >
           Publicar
         </Button>

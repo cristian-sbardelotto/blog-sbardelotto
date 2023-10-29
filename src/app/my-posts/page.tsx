@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -10,14 +11,21 @@ import { Post } from '@prisma/client';
 import { toast } from 'react-toastify';
 
 export default function MyPosts() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const { data } = useFetch<Post[]>('/api/my-posts/');
   const router = useRouter();
 
   async function deletePost(id: string) {
+    setIsLoading(true);
+
     const response = await fetch(`/api/my-posts/${id}`, { method: 'DELETE' });
 
     if (response.ok) {
+      setIsLoading(false);
+
       router.push('/');
+
       return toast('Publicação excluída com sucesso!', {
         position: 'top-right',
         type: 'success',
@@ -52,6 +60,7 @@ export default function MyPosts() {
                 </Link>
 
                 <Button
+                  isLoading={isLoading}
                   variant='danger'
                   className='hover:bg-red-500 hover:text-gray-200 transition-colors'
                   onClick={() => deletePost(post.id)}
