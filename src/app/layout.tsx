@@ -1,7 +1,9 @@
-import { NextAuthProvider } from '@/providers/auth';
 import type { Metadata } from 'next';
 import { Lexend_Deca } from 'next/font/google';
 import './globals.css';
+
+import { ToastProvider } from '@/providers/toast';
+import { NextAuthProvider } from '@/providers/auth';
 
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -25,11 +27,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang='pt-br'>
       <body className={`${lexendDeca.className} bg-main flex flex-col`}>
         <NextAuthProvider>
-          <Header />
+          <ToastProvider>
+            <Header />
 
-          <div className='flex-1'>{children}</div>
+            <div className='flex-1'>{children}</div>
 
-          <Footer />
+            <Footer />
+          </ToastProvider>
         </NextAuthProvider>
       </body>
     </html>
