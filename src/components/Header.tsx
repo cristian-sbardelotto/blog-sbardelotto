@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Button } from '@/components/Button';
 import { useAuth } from '@/hooks/useAuth';
 import { useModal } from '@/hooks/useModal';
+import { X } from 'lucide-react';
 
 export function Header() {
   const { isModalOpen, toggleModal } = useModal(false);
@@ -19,14 +20,22 @@ export function Header() {
         </h1>
 
         {isUserLoggedIn ? (
-          <Image
-            src={String(data?.user?.image)}
-            alt='User Image'
-            width={40}
-            height={40}
-            className='rounded-full border border-gray-200 cursor-pointer'
-            onClick={toggleModal}
-          />
+          isModalOpen ? (
+            <X
+              size={40}
+              onClick={toggleModal}
+              className='cursor-pointer'
+            />
+          ) : (
+            <Image
+              src={String(data?.user?.image)}
+              alt='User Image'
+              width={40}
+              height={40}
+              className='rounded-full border border-gray-200 cursor-pointer'
+              onClick={toggleModal}
+            />
+          )
         ) : (
           <Button
             onClick={() => signIn()}
