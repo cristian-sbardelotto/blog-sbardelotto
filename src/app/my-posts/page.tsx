@@ -41,7 +41,7 @@ export default function MyPosts() {
   return (
     <main className='px-5 pt-4 flex flex-col items-center'>
       <div className='flex flex-col items-center gap-6 w-full md:max-w-[900px]'>
-        {data &&
+        {data && data.length > 0 ? (
           data.map(post => (
             <PostCard.Root key={post.id}>
               <PostCard.Title
@@ -69,7 +69,12 @@ export default function MyPosts() {
                 </Button>
               </div>
             </PostCard.Root>
-          ))}
+          ))
+        ) : (
+          <h2 className='text-lg text-center'>
+            Você ainda não tem nenhuma publicação.
+          </h2>
+        )}
       </div>
     </main>
   );
