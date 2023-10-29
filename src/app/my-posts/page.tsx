@@ -19,8 +19,8 @@ export default function MyPosts() {
   }
 
   return (
-    <>
-      <main className='px-5 pt-4 space-y-6'>
+    <main className='px-5 pt-4 flex flex-col items-center'>
+      <div className='flex flex-col items-center gap-6 w-full md:max-w-[900px]'>
         {data &&
           data.map(post => (
             <PostCard.Root key={post.id}>
@@ -29,25 +29,27 @@ export default function MyPosts() {
                 title={post.title}
               />
 
-              <Link href={`/posts/${post.id}`}>
-                <Button
-                  variant='outline'
-                  className='w-full hover:bg-black hover:text-gray-200 transition-colors'
-                >
-                  Mais detalhes
-                </Button>
-              </Link>
+              <div className='flex items-center justify-end gap-1.5 mt-3'>
+                <Link href={`/posts/${post.id}`}>
+                  <Button
+                    variant='outline'
+                    className='w-full hover:bg-black hover:text-gray-200 transition-colors'
+                  >
+                    Mais detalhes
+                  </Button>
+                </Link>
 
-              <Button
-                variant='danger'
-                className='w-full hover:bg-red-500 hover:text-gray-200 transition-colors mt-3'
-                onClick={() => deletePost(post.id)}
-              >
-                Excluir post
-              </Button>
+                <Button
+                  variant='danger'
+                  className='hover:bg-red-500 hover:text-gray-200 transition-colors'
+                  onClick={() => deletePost(post.id)}
+                >
+                  Excluir post
+                </Button>
+              </div>
             </PostCard.Root>
           ))}
-      </main>
-    </>
+      </div>
+    </main>
   );
 }
