@@ -1,8 +1,81 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center"> 🧡 Blog Sbardelotto 🧡 </h1>
 
-## Getting Started
+<p align="center">
+This website is a simple Blog, that includes basically features such as <strong>create</strong>, <strong>read</strong>, and <strong>manage</strong> some posts.
+</p>
 
-First, run the development server:
+<p align="center">
+  <a href="#technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#learning">What I've Learned</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#layout">Layout</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+
+<br>
+
+<p align="center">
+  <img alt="Project preview" src="./.github/preview.png">
+</p>
+
+<br />
+<h1 id='technologies'>🖱️ Technologies</h2>
+
+<p>This project was made with the following technologies/libraries:</p>
+
+- TypeScript
+- NextJS
+- TailwindCSS
+- Prisma
+- React Hook Form
+- Zod
+- NextAuth
+- Lucide-react (icons)
+- Git & Github
+- Eslint + Prettier (code maintenance)
+
+<br />
+
+<h1 id='learning'>🧠 What I've Learned</h2>
+
+<p>In this website, I worked with:</p>
+
+- Usage of [React Hook Form Library](https://react-hook-form.com/)
+- Usage of [Zod](https://zod.dev/)
+- [Composition Pattern](./src/components/PostCard/)
+
+<br />
+
+<h1 id='layout'>🖥️ Layout</h1>
+
+<br />
+
+To develop this project, I used this [Figma Design](https://www.figma.com/file/Yb9IBH56g7T1hdIyZ3BMNO/Desafios---Codel%C3%A2ndia?type=design&node-id=0-1&mode=design&t=1MUyfbxsD7SsxHoP-0).
+
+To see the Deploy, check [this link](https://blog-sbardelotto.vercel.app/).
+
+<br />
+
+<h1 id='installation'>📤 Installation</h1>
+
+<h3>Firstly, you need to <strong>clone the project</strong> on your machine:</h3>
+
+```bash
+git clone https://github.com/cristian-sbardelotto/blog-sbardelotto
+```
+
+<br />
+
+<h3>After that, open the project folder and <strong>install the dependencies:</strong></h3>
+
+```bash
+npm install
+# or
+yarn
+#or
+pnpm install
+```
+
+<h3>To <strong>run the project</strong> on your browser, use:</h3>
 
 ```bash
 npm run dev
@@ -12,23 +85,21 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<br/>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<div align='center'>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<h2 align='center'>Enjoy this project!</h2>
 
-## Learn More
+<br />
 
-To learn more about Next.js, take a look at the following resources:
+Developed with 🧡 by <strong>Cristian Sbardelotto</strong>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<br />
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+[![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/cristian-k-sbardelotto/)
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/cristian-sbardelotto)
 
-## Deploy on Vercel
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://bit.ly/portfolioSbardelotto)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+</div>
